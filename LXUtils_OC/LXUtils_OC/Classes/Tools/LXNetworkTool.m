@@ -17,17 +17,35 @@ NSString * const kUseWiFiConnectInternet = @"kUseWiFiConnectInternet";
 
 NSString * const kUseMobileNetworkConnectInternet = @"kUseMobileNetworkConnectInternet";
 
-NSString * const kOpenHttpRequestLog = @"kOpenHttpRequestLog";
-
-NSString * const kShowGuidancePage = @"kShowGuidancePage";
-
-
 
 +(void)startNetWrokWithURL:(NSString *)url
 {
-    Reachability *reach = [Reachability reachabilityWithHostname:url];
+    Reachability *reach;
+    if (url == nil) {
+        reach = [Reachability reachabilityForInternetConnection];
+    }else{
+        reach = [Reachability reachabilityWithHostname:url];
+    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     [reach startNotifier];
+}
+
++ (void) startNetWrokWithURL:(NSString *) url NetWorkChanged:(connectNetWork) connected
+{
+    Reachability *reach;
+    if (url == nil) {
+        reach = [Reachability reachabilityForInternetConnection];
+    }else{
+        reach = [Reachability reachabilityWithHostname:url];
+    }
+    [reach startNotifier];
+    reach.reachabilityBlock = ^(Reachability *reachability, SCNetworkConnectionFlags flags) {
+        if ([reachability isReachableViaWiFi] || [reachability isReachableViaWWAN]) {
+            if (connected) {
+                connected();
+            }
+        }
+    };
 }
 
 + (void) reachabilityChanged: (NSNotification*)note {
@@ -52,15 +70,15 @@ NSString * const kShowGuidancePage = @"kShowGuidancePage";
 
 + (BOOL)isNotConnectNetWork
 {
-    return ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] == NotReachable);
+    return ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == NotReachable);
 }
 
 + (BOOL)isConnectWIFI
 {
-    return ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] == ReachableViaWiFi);
+    return ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWiFi);
 }
 
-+ (BOOL)isConnect3G4G
++ (BOOL)isConnectWWAN
 {
     return ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWWAN);
 }

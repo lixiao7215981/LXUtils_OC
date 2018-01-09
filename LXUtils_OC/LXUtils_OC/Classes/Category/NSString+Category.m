@@ -98,13 +98,9 @@
 
 - (NSString *)encodeToPercentEscapeString
 {
-//    if (@available(iOS 9.0, *)) {
-//        return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-//    }else{
-        NSString *outputStr = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(__bridge CFStringRef)self,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
-        CFRelease((__bridge CFTypeRef)(outputStr));
-        return outputStr;
-//    }
+    NSString *outputStr = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(__bridge CFStringRef)self,NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8);
+    CFRelease((__bridge CFTypeRef)(outputStr));
+    return outputStr;
 }
 
 - (NSString *)decodeFromPercentEscapeString

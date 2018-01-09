@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^connectNetWork)();
+
 @interface LXNetworkTool : NSObject
 
 /** 与互联网断开连接 */
@@ -21,11 +23,31 @@ extern NSString * const kUseMobileNetworkConnectInternet;
 
 
 /**
+ iOS 10 首次启动弹出给定网络权限
+ if ([LXNetworkTool isNotConnectNetWork]) {
+    NSLog(@"NotConnectNetWork");
+    [LXNetworkTool startNetWrokWithURL:nil NetWorkChanged:^{
+    NSLog(@"NetWorkChanged");
+    }];
+ }else{
+    NSLog(@"ConnectNetWork");
+ }
+ **/
+
+/**
  *  开始监控网络连接方式改变
  *
  *  @param url 传入监控的URL
  */
 + (void) startNetWrokWithURL:(NSString *) url;
+
+/**
+ 开始监控网络连接方式改变
+ 
+ @param url 监控的地址 为 nil 则默认
+ @param connected 连接状态改变后调用block
+ */
++ (void) startNetWrokWithURL:(NSString *) url NetWorkChanged:(connectNetWork) connected;
 
 /**
  *  是否连接上互联网
@@ -42,6 +64,6 @@ extern NSString * const kUseMobileNetworkConnectInternet;
 /**
  *  是否3G/4G
  */
-+ (BOOL)isConnect3G4G;
++ (BOOL)isConnectWWAN;
 
 @end

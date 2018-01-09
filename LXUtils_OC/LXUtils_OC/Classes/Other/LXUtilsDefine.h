@@ -88,8 +88,6 @@
 #define kLINE_Back_Color kRGBColor(221, 221, 221, 1)
 //  System Color
 #define kSystemColor  kRGBColor(71, 167, 216, 1)
-//  AppDelegate
-#define MainDelegate  ((BaseDelegate *)[UIApplication sharedApplication].delegate)
 // LogFrame
 #define kFrameLog(f) NSLog(@"%@",NSStringFromCGRect(f));
 
