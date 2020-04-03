@@ -8,7 +8,8 @@
 /*-------- SYSTEM LOG ---------*/
 
 #ifdef DEBUG
-#define NSLog(...) NSLog(__VA_ARGS__)
+//#define NSLog(...) NSLog(__VA_ARGS__)
+#define NSLog(formater,...) NSLog((@"\n====================\n >>> class: %s\n\n >>> method: %s\n\n" " >>> code line: %d 行\n\n >>> info: "  formater @"\n==================="),__FILE__,__FUNCTION__,__LINE__,##__VA_ARGS__)
 #else
 #define NSLog(...)
 #endif

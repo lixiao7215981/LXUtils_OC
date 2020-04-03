@@ -32,4 +32,12 @@
  */
 + (NSString *) getApp_BundleIdentifier;
 
+///地方型号  （国际化区域名称）
++ (NSString *)getPhone_localizedModel;
+/// 手机型号
++ (NSString *)getPhone_Model;
+///手机系统版本
++ (NSString *)getPhone_Version;
+/// app build版本
++ (NSString *)getApp_BuildVersion;
 @end

@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+#define  PATTERN_STANDARD08W  @"yyyyMMdd"
+#define  PATTERN_STANDARD12W  @"yyyyMMddHHmm"
+#define  PATTERN_STANDARD14W  @"yyyyMMddHHmmss"
+#define  PATTERN_STANDARD17W  @"yyyyMMddHHmmssSSS"
+#define  PATTERN_STANDARD10H  @"yyyy-MM-dd"
+#define  PATTERN_STANDARD16H  @"yyyy-MM-dd HH:mm"
+#define  PATTERN_STANDARD19H  @"yyyy-MM-dd HH:mm:ss"
+#define  PATTERN_STANDARD10X  @"yyyy/MM/dd"
+#define  PATTERN_STANDARD16X  @"yyyy/MM/dd HH:mm"
+#define  PATTERN_STANDARD19X  @"yyyy/MM/dd HH:mm:ss"
+#define  PATTERN_STANDARD20H  @"HH:mm"
+#define  PATTERN_STANDARD21H  @"HH"
+
 @interface NSString (Date)
 
 /**
@@ -23,4 +38,11 @@
  */
 - (NSDate *) FormatterDateFromYMD;
 
+/**
+ *  将 String 类型转化位 Date 类型自定义
+ */
+- (NSDate *) FormatterDateFromCustomFormat:(NSString *) format;
+
 @end
+
+NS_ASSUME_NONNULL_END

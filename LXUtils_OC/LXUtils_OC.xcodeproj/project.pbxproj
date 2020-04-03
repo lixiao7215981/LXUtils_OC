@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01EA35A3C23262177184EE18 /* libPods-LXUtils_OC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B21701240DF1E3D51BB44E2 /* libPods-LXUtils_OC.a */; };
 		4E546F001FF37E2D00EE717C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E546EFF1FF37E2D00EE717C /* Assets.xcassets */; };
 		4E546F571FF37EBD00EE717C /* CALayer+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E546F0F1FF37EBD00EE717C /* CALayer+Category.m */; };
 		4E546F581FF37EBD00EE717C /* NSArray+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E546F111FF37EBD00EE717C /* NSArray+Category.m */; };
@@ -43,6 +42,7 @@
 		4E546F761FF37EBD00EE717C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4E546F521FF37EBD00EE717C /* Info.plist */; };
 		4E546F771FF37EBD00EE717C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E546F531FF37EBD00EE717C /* main.m */; };
 		4E546F781FF37EBD00EE717C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E546F551FF37EBD00EE717C /* ViewController.m */; };
+		A9E62F63523DD9905B434407 /* Pods_LXUtils_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732B726936F88F33EC6E6802 /* Pods_LXUtils_OC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,8 +115,8 @@
 		4E546F541FF37EBD00EE717C /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4E546F551FF37EBD00EE717C /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4E546F791FF3806800EE717C /* Foundation+Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Foundation+Log.h"; sourceTree = "<group>"; };
+		732B726936F88F33EC6E6802 /* Pods_LXUtils_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LXUtils_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		774CA733B0ADEA16D21CF7E6 /* Pods-LXUtils_OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXUtils_OC.release.xcconfig"; path = "Pods/Target Support Files/Pods-LXUtils_OC/Pods-LXUtils_OC.release.xcconfig"; sourceTree = "<group>"; };
-		8B21701240DF1E3D51BB44E2 /* libPods-LXUtils_OC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LXUtils_OC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B31998F424098F6D011CDAED /* Pods-LXUtils_OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LXUtils_OC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LXUtils_OC/Pods-LXUtils_OC.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01EA35A3C23262177184EE18 /* libPods-LXUtils_OC.a in Frameworks */,
+				A9E62F63523DD9905B434407 /* Pods_LXUtils_OC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,7 +293,7 @@
 		7386B3C02F44011FB55FC15F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B21701240DF1E3D51BB44E2 /* libPods-LXUtils_OC.a */,
+				732B726936F88F33EC6E6802 /* Pods_LXUtils_OC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -309,8 +309,7 @@
 				4E546EEF1FF37E2D00EE717C /* Sources */,
 				4E546EF01FF37E2D00EE717C /* Frameworks */,
 				4E546EF11FF37E2D00EE717C /* Resources */,
-				102DEC5D9CC2DE16B0AF229F /* [CP] Embed Pods Frameworks */,
-				48477FA3BA60D80EBB24CF9C /* [CP] Copy Pods Resources */,
+				FFFB1DD7EB0E214422F49269 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -369,49 +368,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		102DEC5D9CC2DE16B0AF229F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LXUtils_OC/Pods-LXUtils_OC-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		48477FA3BA60D80EBB24CF9C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LXUtils_OC/Pods-LXUtils_OC-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4E57B1A9C522EF7CD0D1E72 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LXUtils_OC-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFFB1DD7EB0E214422F49269 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LXUtils_OC/Pods-LXUtils_OC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LXUtils_OC/Pods-LXUtils_OC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

@@ -1,4 +1,9 @@
-target:LXUtils_OC do
-    platform :ios, '8.0'
-    pod 'AFNetworking'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'LXUtils_OC' do
+  platform :ios, '8.0'
+  use_frameworks!
+  
+  pod 'AFNetworking', '~> 3.0', :subspecs => ['Reachability', 'Serialization', 'Security', 'NSURLSession']
+  
 end

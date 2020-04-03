@@ -117,4 +117,59 @@
     return dt2 - dt1;
 }
 
+/// 返回当前时间日期的参数
+/// @param unit     年/月/日/时/分/秒
++ (NSInteger) getDateParamFrom:(NSCalendarUnit) unit{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags =
+    NSCalendarUnitYear | //年
+    NSCalendarUnitMonth | //月份
+    NSCalendarUnitDay | //日
+    NSCalendarUnitHour |  //小时
+    NSCalendarUnitMinute |  //分钟
+    NSCalendarUnitSecond;  // 秒
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:[NSDate date]];
+    
+    if (unit == NSCalendarUnitYear) {
+        return [dateComponent year];
+    }
+    if (unit == NSCalendarUnitMonth) {
+        return [dateComponent month];
+    }
+    if (unit == NSCalendarUnitDay) {
+        return [dateComponent day];
+    }
+    if (unit == NSCalendarUnitHour) {
+        return [dateComponent hour];
+    }
+    if (unit == NSCalendarUnitMinute) {
+        return [dateComponent minute];
+    }
+    if (unit == NSCalendarUnitSecond) {
+        return [dateComponent second];
+    }
+    return 0;
+}
+
+///给一个date返回上一个月或者下一个月
++ (NSString *)getHistoryDate:(NSDate*)newDate number:(NSInteger)num AddAndSubtract:(BOOL)AddSub {
+    
+    //获取NSCalender单例
+    NSCalendar *calender = [NSCalendar currentCalendar];
+    //设置属性，因为我只需要年和月，这个属性还可以支持时，分，秒
+    NSDateComponents *cmp = [calender components:(NSCalendarUnitMonth | NSCalendarUnitYear) fromDate:newDate];
+    //设置上个月，即在现有的基础上减去一个月(2017年1月 减去一个月 会得到2016年12月)
+    
+    if(AddSub) {
+        [cmp setMonth:[cmp month] + num];
+        
+    }else{
+        [cmp setMonth:[cmp month] - num];
+    }
+    
+    //拿到上个月的NSDate，再用NSDateFormatter就可以拿到单独的年和月了。
+    
+    return [[calender dateFromComponents:cmp] FormatterYMD];
+}
+
 @end

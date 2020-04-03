@@ -13,23 +13,31 @@
 - (NSString *)FormatterYYYYMMDD
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    formatter.dateFormat = PATTERN_STANDARD19H;
     NSDate *date = [formatter dateFromString:self];
-    formatter.dateFormat = @"yyyy-MM-dd";
+    formatter.dateFormat = PATTERN_STANDARD10H;
     return [formatter stringFromDate:date];
 }
 
 - (NSDate *)FormatterDateFromYMDHMS
 {
     NSDateFormatter *strToDateFor = [[NSDateFormatter alloc]init];
-    strToDateFor.dateFormat = @"yyyy/MM/dd HH:mm:ss";
+    strToDateFor.dateFormat = PATTERN_STANDARD19X;
     return [strToDateFor dateFromString:self];
 }
 
 - (NSDate *)FormatterDateFromYMD
 {
     NSDateFormatter *strToDateFor = [[NSDateFormatter alloc]init];
-    strToDateFor.dateFormat = @"yyyy/MM/dd";
+    strToDateFor.dateFormat = PATTERN_STANDARD10X;
+    return [strToDateFor dateFromString:self];
+}
+
+- (NSDate *)FormatterDateFromCustomFormat:(NSString *)format
+{
+    NSDateFormatter *strToDateFor = [[NSDateFormatter alloc]init];
+    strToDateFor.dateFormat = format;
+    NSLog(@"-----FormatterDateFromCustomFormat------%@",self);
     return [strToDateFor dateFromString:self];
 }
 

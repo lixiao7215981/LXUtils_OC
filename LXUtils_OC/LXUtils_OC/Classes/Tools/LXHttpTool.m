@@ -11,7 +11,7 @@
 @implementation LXHttpTool
 
 /** 请求超时时间 **/
-static NSTimeInterval const defaultRequestTimeout = 60;
+static NSTimeInterval const defaultRequestTimeout = 30;
 /** 上传数据超时时间 **/
 static NSTimeInterval const defaultUploadTimeout = 60;
 
@@ -146,6 +146,73 @@ static NSTimeInterval const defaultUploadTimeout = 60;
     }
 }
 
++ (NSURLSessionDataTask *) HttpToolPostJsonWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser timeoutInterval:(NSTimeInterval)timeout requestHeaderField:(NSDictionary *)header Data:(NSData *)data Name:(NSString *)name FileName:(NSString *)fileName MainType:(NSString *)mainType Serializer:(serializer)serializer Success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    if (timeout) {
+        manager.requestSerializer.timeoutInterval = timeout;
+    }
+    AFHTTPResponseSerializer *ser = [AFHTTPResponseSerializer serializer];
+    if (serializer == JSONResponseSerializer) {
+        ser = [AFJSONResponseSerializer serializer];
+    }else if (serializer == XMLParserResponseSerializer){
+        ser = [AFXMLParserResponseSerializer serializer];
+    }
+    manager.responseSerializer = ser;
+
+    
+    if (header) {
+        [header enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [manager.requestSerializer setValue:obj forHTTPHeaderField:key];
+        }];
+    }
+    
+    if (data) {
+        NSURLSessionDataTask *task = [manager POST:url parameters:parameser constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            [formData appendPartWithFileData:data name:name fileName:fileName mimeType:mainType];
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (success) {
+                success(responseObject);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
+        return task;
+    }else{
+        NSURLSessionDataTask *task = [manager POST:url parameters:parameser progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            if (success) {
+                success(responseObject);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            if (failure) {
+                failure(error);
+            }
+        }];
+        return task;
+    }
+}
+
++ (NSURLSessionDataTask *) HttpToolPostJsonWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser Success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    NSURLSessionDataTask *task = [LXHttpTool HttpToolPostJsonWithUrl:url paramesers:parameser timeoutInterval:defaultRequestTimeout requestHeaderField:nil Data:nil Name:nil FileName:nil MainType:nil Serializer:HTTPResponseSerializer Success:^(id json) {
+        if (success) {
+            success(json);
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+    return task;
+}
+
 + (NSURLSessionDataTask *) HttpToolPostWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser Success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
     NSURLSessionDataTask *task = [LXHttpTool HttpToolPostWithUrl:url paramesers:parameser timeoutInterval:defaultRequestTimeout requestHeaderField:nil Data:nil Name:nil FileName:nil MainType:nil Serializer:HTTPResponseSerializer Success:^(id json) {
@@ -159,8 +226,6 @@ static NSTimeInterval const defaultUploadTimeout = 60;
     }];
     return task;
 }
-
-
 
 + (NSURLSessionDataTask *) HttpToolPostWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser Serializer:(serializer)serializer Success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {

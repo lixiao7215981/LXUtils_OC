@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking-umbrella.h>
 
 typedef enum {
     JSONResponseSerializer,
@@ -83,7 +83,14 @@ typedef enum {
  */
 + (NSURLSessionDataTask *) HttpToolPostWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser requestHeaderField:(NSDictionary *) header Data:(NSData *) data Name:(NSString *)name FileName:(NSString *) fileName MainType:(NSString *)mainType  Success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
 
-
+/**
+*  利用 AFNetWorking 发送POST JSON 请求,设置返回值类型
+*/
++ (NSURLSessionDataTask *) HttpToolPostJsonWithUrl:(NSString *)url paramesers:(NSDictionary *)parameser timeoutInterval:(NSTimeInterval)timeout requestHeaderField:(NSDictionary *)header Data:(NSData *) data Name:(NSString *)name FileName:(NSString *) fileName MainType:(NSString *)mainType Serializer:(serializer)serializer Success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
+/**
+*  利用 AFNetWorking 发送POST JSON 请求
+*/
++ (NSURLSessionDataTask *) HttpToolPostJsonWithUrl:(NSString *) url paramesers:(NSDictionary *) parameser Success:(void(^)(id json)) success failure:(void (^)(NSError *error)) failure;
 
 /**
  *  AFNetWorking 发送PUT请求总方法

@@ -86,4 +86,12 @@
  */
 + (NSTimeInterval) getDiscrepancyData:(NSDate *)date1 WithDate:(NSDate *) date2;
 
+/// 返回当前时间日期的参数
+/// @param unit     年/月/日/时/分/秒
++ (NSInteger) getDateParamFrom:(NSCalendarUnit) unit;
+
+
+///给一个date返回上一个月或者下一个月
++ (NSString *)getHistoryDate:(NSDate*)newDate number:(NSInteger)num AddAndSubtract:(BOOL)AddSub;
+
 @end

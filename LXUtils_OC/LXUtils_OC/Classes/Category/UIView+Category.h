@@ -53,5 +53,6 @@ typedef NS_OPTIONS(NSUInteger, UIBorderSideType) {
 
 - (UIView *)borderForColor:(UIColor *)color borderWidth:(CGFloat)borderWidth startPoint:(CGPoint) startPoint endPoint:(CGPoint) endPoint;
 
+- (UIViewController*) viewController ;
 
 @end
